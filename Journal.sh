@@ -29,3 +29,10 @@ git add .gitignore
 
 # Commit du fichier .gitignore
 git commit -m "Ajout du fichier .gitignore"
+
+pip install google-generativeai # (API Gemini )
+pip install gtts # ( Google Text−to−Speech )
+pip install requests pandas # ( Requetes web et manipulation de donnees )
+pip install matplotlib seaborn # ( Visualisation des donnees )
+pip install pycoingecko # (API CoinGecko pour recuperer les prix de scryptos )
+pip install pygame # ( Pour jouer des sons )
