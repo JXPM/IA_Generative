@@ -41,4 +41,8 @@ pip install nbformat #(Pour le format)
 #Lancer le script depuis mon terminal 
 python3 Tchaipo_IA.py
 
+#fichier Maj et push 
 git status 
+git add .
+git commit -m "Maj et ajout de fichier"
+git push origin main
