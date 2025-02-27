@@ -90,3 +90,64 @@ for name, crypto_id in cryptos.items():
         print(f"Données enregistrées dans {csv_filename}")
     else:
         print(f"Erreur lors de la récupération des données pour {name}")
+
+
+# Je vais passer à l'analyse des données 
+import cohere
+import os
+import nbformat as nbf
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("COHERE_API_KEY")
+
+if not API_KEY:
+    raise ValueError("Clé API Cohere manquante ! Vérifie ton fichier .env.")
+
+print("Clé API chargée :", API_KEY[:5] + "..." + API_KEY[-5:]) 
+
+# Initialiser Cohere
+co = cohere.Client(API_KEY)
+
+# Prompt détaillé pour générer le code
+prompt = """
+Écris un notebook Jupyter pour analyser les cryptomonnaies (Bitcoin, Ethereum, Solana).
+Utilise l'API CoinGecko pour récupérer les prix des 7 derniers jours et calcule :
+- La moyenne mobile (SMA, EMA)
+- La volatilité des prix
+-Utilise mes fichiers bitcoin_prix_7jours.csv, ethereum_prix_7jours.csv et solana_prix_7jours.csv
+Affiche les résultats sous forme de **graphique** avec Matplotlib.
+Ajoute des cellules Markdown expliquant chaque étape.
+"""
+
+# Générer le code avec Cohere
+response = co.generate(
+    model="command",  # Essaie "command" ou "command-r" selon ton accès
+    prompt=prompt,
+    max_tokens=1000
+)
+
+# Extraire le texte généré
+generated_code = response.generations[0].text
+
+# Créer un notebook Jupyter
+nb = nbf.v4.new_notebook()
+
+# Ajouter une cellule Markdown d'introduction
+nb.cells.append(nbf.v4.new_markdown_cell("# 📊 Analyse des Cryptos avec CoinGecko\n"
+                                         "Ce notebook analyse Bitcoin, Ethereum et Solana "
+                                         "à l'aide des indicateurs financiers suivants :\n"
+                                         "- **Moyenne mobile (SMA, EMA)**\n"
+                                         "- **Indice de force relative (RSI)**\n"
+                                         "- **Volatilité**\n\n"
+                                         "Les données proviennent de l'API **CoinGecko**."))
+
+# Ajouter le code généré par Cohere dans une cellule de code
+nb.cells.append(nbf.v4.new_code_cell(generated_code))
+
+notebook_filename = "Analyse_Crypto.ipynb"
+with open(notebook_filename, "w", encoding="utf-8") as f:
+    nbf.write(nb, f)
+
+print(f"Notebook généré : {notebook_filename}")
+print("Ouvre-le avec Jupyter Notebook pour voir l'analyse étape par étape.")

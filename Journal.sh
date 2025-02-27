@@ -36,3 +36,9 @@ pip install requests pandas # ( Requetes web et manipulation de donnees )
 pip install matplotlib seaborn # ( Visualisation des donnees )
 pip install pycoingecko # (API CoinGecko pour recuperer les prix de scryptos )
 pip install pygame # ( Pour jouer des sons )
+pip install nbformat #(Pour le format)
+
+#Lancer le script depuis mon terminal 
+python3 Tchaipo_IA.py
+
+git status 
