@@ -42,7 +42,7 @@ pip install nbformat #(Pour le format)
 python3 Tchaipo_IA.py
 
 #fichier Maj et push 
-git status 
+git status
 git add .
 git commit -m "Maj"
 git push origin main

@@ -4,7 +4,7 @@ import openai
 app = Flask(__name__)
 
 # Authentification OpenRouter
-openai.api_key = "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"  # ← Change ici par TA vraie clé
+openai.api_key = "sk-or-v1-my-key"
 openai.api_base = "https://openrouter.ai/api/v1"
 
 @app.route("/", methods=["GET", "POST"])
