@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>MaudiaGuardian Bot - Chatbot IA</title>
+    <style>
+        body {
+            background: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            max-width: 700px;
+            margin: auto;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .header h1 {
+            margin-top: 10px;
+            font-size: 28px;
+        }
+
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            font-size: 15px;
+        }
+
+        input[type="submit"] {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #0052a3;
+        }
+
+        .response {
+            margin-top: 30px;
+            background: #e8f0fe;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .response strong {
+            color: #003366;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://img.icons8.com/emoji/96/robot-emoji.png" alt="Icône robot">
+        <h1>MaudiaGuardian Bot</h1>
+        <p>Ton assistant IA cyber</p>
+    </div>
+
+    <form method="post">
+        <label for="prompt">Comment puis-je t'aider :</label>
+        <textarea id="prompt" name="prompt" rows="4" placeholder="Écris ta question ici..."></textarea>
+        <input type="submit" value="Envoyer">
+    </form>
+
+    {% if response %}
+    <div class="response">
+        <strong>Réponse :</strong><br>
+        {{ response }}
+    </div>
+    {% endif %}
+</body>
+</html>
